@@ -1,3 +1,7 @@
+let player = {
+    name: "Thando",
+    chips: 150
+}
 let firstCard = getRandomCard()
 let secondCard = getRandomCard()
 let cards = []
@@ -8,6 +12,9 @@ let message = ""
 let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("cards-el")
+let playerEl = document.getElementById("player-el")
+
+playerEl.textContent = player.name + ": $" + player.chips
 
 function getRandomCard() {
     let randomNumber =  Math.floor( Math.random()*13 ) + 1 // generate number from 1-13
@@ -52,8 +59,10 @@ function renderGame() {
 
 function newCard() {
     console.log("Drawing a new card from the deck!")
-    let card = getRandomCard()
-    sum += card
-    cards.push(card)
-    renderGame()
+    if (isAlive === true && hasBlackJack === false) {
+        let card = getRandomCard()
+        sum += card
+        cards.push(card)
+        renderGame()
+    }
 }
